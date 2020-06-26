@@ -7,5 +7,6 @@ package com.example.maylight.myapplication;
 public class V1 {
 	public static void main(String[] args) {
 		System.out.println("在master的V1.java上写的代码");
+		System.out.println("创建无关紧要的东西代码");
 	}
 }
