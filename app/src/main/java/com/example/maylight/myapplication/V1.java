@@ -5,4 +5,7 @@ package com.example.maylight.myapplication;
  */
 
 public class V1 {
+	public static void main(String[] args) {
+		System.out.println("创建无关紧要的东西代码");
+	}
 }
