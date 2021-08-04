@@ -2,6 +2,9 @@ package com.example.maylight.myapplication;
 
 import android.animation.ObjectAnimator;
 import android.app.Activity;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -19,7 +22,7 @@ public class MainActivity extends Activity {
 	public static final String TAG = "MainActivity";
 	private TextView textView;
 	private ImageView imageView;
-
+    private TestView testView;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -34,6 +37,9 @@ public class MainActivity extends Activity {
 		int densityDpi = metric.densityDpi;  // 密度DPI（120 / 160 / 240）
 		Log.e(TAG, "width: " + width + " height: " + height + " density: " + density + " densityDpi: " + densityDpi);
 		setContentView(R.layout.activity_main);
+
+		testView = (TestView) findViewById(R.id.testview);
+
 		textView = (TextView) findViewById(R.id.textview);
 		imageView = (ImageView) findViewById(R.id.imageView);
 		textView.setOnClickListener(new View.OnClickListener() {
@@ -55,8 +61,8 @@ public class MainActivity extends Activity {
 //				Animation animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.anim_scale_show);
 				Animation animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.anim_scale_show_suofang);
 //				Animation animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.anim_scale_packup_suofang);
-				imageView.startAnimation(animation);//開始动画
-				animation.setAnimationListener(new Animation.AnimationListener() {
+				testView.startAnimation(animation);//開始动画
+/*				animation.setAnimationListener(new Animation.AnimationListener() {
 					@Override
 					public void onAnimationStart(Animation animation) {
 						//动画开始
@@ -74,9 +80,10 @@ public class MainActivity extends Activity {
 						//动画重复
 						Log.e(TAG,"动画重复");
 					}
-				});
+				});*/
 //				ObjectscaleAnim();
 //				ScaleAnimation(v);
+//				startAlphaAnimation();
 			}
 		});
 		imageView.setOnClickListener(new View.OnClickListener() {
@@ -142,7 +149,14 @@ public class MainActivity extends Activity {
 		});
 		animationSet.addAnimation(scaleAnimation);
 		view.startAnimation(animationSet);
-
-
 	}
+
+	//补间动画方式 - xml
+	public void startAlphaAnimation() {
+		//加载动画xml
+		Animation lAnimation = AnimationUtils.loadAnimation(this, R.anim.alpha);
+		//设置并开启动画
+		imageView.startAnimation(lAnimation);
+	}
+
 }
